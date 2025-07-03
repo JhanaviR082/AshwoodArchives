@@ -1,0 +1,36 @@
+{% extends 'genre/base.html' %}
+{% block content %}
+<div class="container">
+    <div class="row">
+        {% for genreobj in object_list %}
+        <div class="col-md-4 col-sm-6 mb-4">
+            <a href="/genre/{{ genreobj.id }}/" class="genre-card-link">
+                <div class="book-card fade-in-up">
+                    <img src="{{ genreobj.collcover }}" alt="{{ genreobj.collection_name }}" class="book-cover">
+                    <div class="book-info">
+                        <h3 class="book-title">{{ genreobj.collection_name }}</h3>
+                        <p class="book-details">{{ genreobj.description }}</p>
+                    </div>
+                </div>
+            </a>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        const observer = new IntersectionObserver(entries => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add("visible");
+                }
+            });
+        }, { threshold: 0.1 });
+
+        document.querySelectorAll(".fade-in-up").forEach(card => {
+            observer.observe(card);
+        });
+    });
+</script>
+{% endblock %}

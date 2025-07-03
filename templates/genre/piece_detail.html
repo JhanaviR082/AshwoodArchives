@@ -1,0 +1,58 @@
+{# piece_detail.html #}
+{% extends 'genre/base.html' %}
+
+{% block content %}
+<div class="container mt-4">
+    <div class="text-center">
+        <h1 class="book-title typewriter">{{ piece.title }}</h1>
+        <p class="book-author">by {{ piece.artist }}</p>
+        <img src="{{ piece.piececover }}" class="book-cover" alt="{{ piece.title }}">
+        <p class="book-details">Type: {{ piece.typ }} | Year: {{ piece.year }}</p>
+    </div>
+
+    <hr>
+
+    <h2 class="mt-5">Stories in this Piece</h2>
+    {% for story in piece.stories.all %}
+    <div class="story mb-4 reveal">
+        <h4 class="typewriter">{{ story.title }}</h4>
+        <p class="story-content">{{ story.content }}</p>
+    </div>
+    {% empty %}
+    <p>No stories added yet.</p>
+    {% endfor %}
+</div>
+
+<style>
+
+
+/* Scroll reveal */
+.reveal {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+}
+
+.reveal.active {
+  opacity: 1;
+  transform: translateY(0);
+}
+</style>
+
+<script>
+document.addEventListener("DOMContentLoaded", function() {
+  const reveals = document.querySelectorAll(".reveal");
+  function revealOnScroll() {
+    const windowHeight = window.innerHeight;
+    for (let el of reveals) {
+      const elementTop = el.getBoundingClientRect().top;
+      if (elementTop < windowHeight - 100) {
+        el.classList.add("active");
+      }
+    }
+  }
+  window.addEventListener("scroll", revealOnScroll);
+  revealOnScroll(); // trigger on load too
+});
+</script>
+{% endblock %}

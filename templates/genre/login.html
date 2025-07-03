@@ -1,0 +1,42 @@
+{% extends "genre/base.html" %}
+{% block content %}
+<div class="container fade-in" style="max-width: 400px; margin-top: 60px;">
+    <h2 class="text-center" style="color: #ffdd99;">𖤝 Ashwood Awaits 𖤝</h2>
+
+    {% if form.errors %}
+    <div class="ashwood-alert">⟢Ashwood gate denies thy credentials⟢</div>
+    {% endif %}
+    <form method="post" id="login-form"> 
+    <form method="post" action="{% url 'login' %}" class="form-horizontal" style="background: #4d0000; padding: 30px; border-radius: 10px;">
+        {% csrf_token %}
+        <div class="form-group">
+            <label for="id_username" class="control-label" style="color: #ffdd99;">Username</label>
+            <input type="text" name="username" class="form-control" id="id_username" required>
+        </div>
+
+        <div class="form-group">
+            <label for="id_password" class="control-label" style="color: #ffdd99;">Password</label>
+            <input type="password" name="password" class="form-control" id="id_password" required>
+            <div class="checkbox" style="margin-top: 5px;">
+                <label style="color: #ffdd99;">
+                    <input type="checkbox" onclick="togglePassword()"> Show Password
+                </label>
+            </div>
+        </div>
+
+        <button type="submit" class="btn btn-block" style="background: #3d0000; color: #ffdd99;">Login</button>
+    </form>
+
+    <p class="text-center" style="margin-top: 20px; color: #ffdd99;">
+        Don't have an account? 
+        <a href="{% url 'userform' %}" style="color: #d4a373;">Register</a>
+    </p>
+</div>
+
+<script>
+    function togglePassword() {
+        var pwd = document.getElementById("id_password");
+        pwd.type = (pwd.type === "password") ? "text" : "password";
+    }
+</script>
+{% endblock %}

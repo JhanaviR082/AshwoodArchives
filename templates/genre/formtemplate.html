@@ -1,0 +1,78 @@
+{% extends 'genre/base.html' %}
+{% block content %}
+
+<style>
+  .ashwood-register-container {
+    max-width: 500px;
+    margin: 60px auto;
+    background-color: #0f0f0f;
+    border: 1px solid #3a2f2f;
+    padding: 40px;
+    border-radius: 15px;
+    box-shadow: 0 0 20px #000;
+    color: #d4a85a;
+    font-family: 'Cinzel Decorative', serif;
+  }
+
+  .ashwood-register-container h2 {
+    text-align: center;
+    margin-bottom: 30px;
+    font-size: 28px;
+    letter-spacing: 1px;
+    border-bottom: 1px solid #3a2f2f;
+    padding-bottom: 10px;
+  }
+
+  .ashwood-register-container label {
+    font-size: 16px;
+    display: block;
+    margin-top: 20px;
+  }
+
+  .ashwood-register-container input {
+    width: 100%;
+    padding: 10px;
+    background-color: #1b1b1b;
+    color: #d4a85a;
+    border: 1px solid #3a2f2f;
+    border-radius: 5px;
+    margin-top: 5px;
+  }
+
+  .ashwood-register-container button {
+    margin-top: 30px;
+    width: 100%;
+    padding: 12px;
+    font-size: 16px;
+    background-color: #3a2f2f;
+    color: #d4a85a;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-family: 'Cinzel Decorative', serif;
+    transition: background-color 0.3s;
+  }
+
+  .ashwood-register-container button:hover {
+    background-color: #523d3d;
+  }
+
+</style>
+
+<div class="ashwood-register-container">
+  <h2>Enter the Ashwood Vault</h2>
+  <form method="post">
+    {% csrf_token %}
+    {% for field in form %}
+      <label for="{{ field.id_for_label }}">{{ field.label }}</label>
+      {{ field }}
+      {% if field.errors %}
+        <div style="color: crimson; font-size: 14px;">{{ field.errors }}</div>
+      {% endif %}
+    {% endfor %}
+    <button type="submit">Summon Account</button>
+  </form>
+</div>
+
+{% endblock %}
+

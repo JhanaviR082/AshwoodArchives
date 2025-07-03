@@ -1,0 +1,762 @@
+:root {
+    --bg-gradient-start: rgb(117, 3, 3);
+    --bg-gradient-end: rgba(70, 0, 0, 1);
+    --text-color: #ffdd99;
+    --card-bg: #4d0000;
+    --card-border: #3d0000;
+    --accent-color: #ffdd99;
+    --shadow-color: rgba(0, 0, 0, 0.2);
+    --meta-text-color: #ffdd99;
+    --base-padding: 20px;
+    --card-gap: 40px;
+    --card-width: 300px;
+    --card-image-height: 400px;
+    --card-border-radius: 10px;
+    --container-max-width: 1200px;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    color: var(--text-color);
+    font-family: New Century Schoolbook, TeX Gyre Schola, serif;
+    padding: var(--base-padding);
+    line-height: 1.5;
+}
+
+a, h1, h2, h3, h4, h5, h6, p, label, input, button, span, div {
+    color: var(--text-color) !important;
+}
+
+/* Collection/Piece Headings */
+.book-title,
+.text-center.mb-4 {
+    font-family: 'Cinzel Decorative', serif;
+    font-weight: 700;
+    font-size: 3.5rem;
+    color: #ffdd99 !important;
+    text-shadow: 
+        2px 2px 4px rgba(77, 0, 0, 0.7),
+        0 0 8px rgba(255, 221, 153, 0.4);
+    letter-spacing: 0.5px;
+    background: linear-gradient(to bottom, #ffdd99, #e6c88c);
+    -webkit-background-clip: text;
+    background-clip: text;
+    animation: vintageFlicker 4s infinite alternate;
+    transition: all 0.4s ease;
+}
+
+@keyframes vintageFlicker {
+    0%, 19%, 21%, 23%, 25%, 54%, 56%, 100% {
+        opacity: 1;
+        text-shadow: 
+            2px 2px 4px rgba(77, 0, 0, 0.7),
+            0 0 8px rgba(255, 221, 153, 0.6);
+    }
+    20%, 24%, 55% {
+        opacity: 0.9;
+        text-shadow: 
+            1px 1px 2px rgba(77, 0, 0, 0.5),
+            0 0 4px rgba(255, 221, 153, 0.3);
+    }
+}
+
+.book-title:hover,
+.text-center.mb-4:hover {
+    animation: none;
+    text-shadow: 
+        0 0 5px #3a0000,
+        0 0 15px rgba(255, 221, 153, 0.8),
+        0 0 25px rgba(255, 221, 153, 0.4);
+    transform: scale(1.02);
+}
+
+/* REST OF YOUR ORIGINAL STYLES EXACTLY AS THEY WERE */
+.header {
+    text-align: center;
+    margin: 30px 0;
+}
+
+.header h1 {
+    font-size: 4rem;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    margin-bottom: 0.5em;
+}
+
+.book-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: var(--card-gap);
+    max-width: var(--container-max-width);
+    margin: auto;
+    padding: var(--base-padding) 0;
+}
+
+.book-card {
+    width: var(--card-width);
+    background: var(--card-bg);
+    border-radius: var(--card-border-radius);
+    overflow: hidden;
+    box-shadow: 0 4px 8px var(--shadow-color);
+    transition: transform 0.3s ease;
+    display: flex;
+    flex-direction: column;
+}
+
+.book-card:hover {
+    transform: translateY(-5px);
+}
+
+.book-cover {
+    display: block;
+    width: 100%;
+    height: var(--card-image-height);
+    object-fit: cover;
+    border-bottom: 2px solid var(--card-border);
+}
+
+.book-info {
+    padding: var(--base-padding);
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.book-title {
+    font-size: 1.9rem;
+    margin-bottom: 0.5em;
+    text-align: center;
+}
+
+.book-author {
+    font-size: 1.5rem;
+    margin-bottom: 1em;
+    text-align: center;
+    color: var(--accent-color);
+}
+
+.book-details {
+    font-size: 1.5rem;
+    line-height: 1.7;
+    color: #fcdda5;
+    font-family: Georgia, serif;
+    font-style: italic;
+    text-shadow: 1px 1px 2px rgba(77, 0, 0, 0.6);
+    padding: 15px 20px;
+    border-left: 3px solid #ffdd99;
+    background: rgba(77, 0, 0, 0.25);
+    border-radius: 6px;
+    margin-bottom: 1.5em;
+}
+
+
+.book-meta {
+    font-size: 0.8rem;
+    color: var(--meta-text-color);
+    text-align: center;
+    margin-top: auto;
+}
+
+.similar-books {
+    margin-top: calc(var(--card-gap) * 1.5);
+    text-align: center;
+}
+
+.similar-books h2 {
+    font-size: 1.2rem;
+    margin-bottom: 1em;
+}
+
+.similar-authors {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    flex-wrap: wrap;
+}
+
+.similar-author {
+    font-size: 0.9rem;
+    color: var(--accent-color);
+    background-color: var(--card-bg);
+    padding: 0.2em 0.6em;
+    border-radius: 4px;
+}
+
+@media (max-width: 768px) {
+    :root {
+        --card-gap: 20px;
+    }
+
+    .book-card {
+        width: clamp(280px, 90%, var(--card-width));
+    }
+
+    .header h1 {
+        font-size: 2.5rem;
+    }
+}
+
+@media (max-width: 480px) {
+    body {
+        padding: 10px;
+    }
+
+    :root {
+        --card-width: 100%;
+        --card-gap: 15px;
+    }
+
+    .book-card {
+        width: 95%;
+    }
+
+    .header h1 {
+        font-size: 2rem;
+    }
+
+    .book-title {
+        font-size: 1.3rem;
+    }
+
+    .book-author {
+        font-size: 1rem;
+    }
+
+    body, p, h1, h2, h3, h4, h5, h6, span, label, a, button, select, option, div {
+        color: #ffdd99 !important;
+    }
+
+    a {
+        color: #ffdd99 !important;
+        text-decoration: none;
+    }
+
+    a:hover,
+    a:focus {
+        color: #ffe4b3 !important;
+        text-decoration: underline;
+    }
+
+    form input,
+    form textarea,
+    form select {
+        color: #ffdd99 !important;
+        background-color: #3d0000 !important;
+        border: 1px solid #ffdd99 !important;
+    }
+
+    form input::placeholder,
+    form textarea::placeholder {
+        color: #ffdd99 !important;
+        opacity: 0.7;
+    }
+}
+
+#login-form input[type="text"],
+#login-form input[type="password"] {
+    color: #ffdd99 !important;
+    background-color: #3d0000 !important;
+    border: 1px solid #ffdd99 !important;
+    padding: 8px 12px;
+    width: 100%;
+    margin-bottom: 15px;
+}
+
+#login-form input[type="text"]::placeholder,
+#login-form input[type="password"]::placeholder {
+    color: #ffdd99 !important;
+    opacity: 0.7;
+}
+
+#login-form input:-webkit-autofill,
+#login-form input:-webkit-autofill:hover, 
+#login-form input:-webkit-autofill:focus,
+#login-form input:-webkit-autofill:active {
+    -webkit-text-fill-color: #ffdd99 !important;
+    -webkit-box-shadow: 0 0 0px 1000px #3d0000 inset !important;
+    transition: background-color 5000s ease-in-out 0s;
+}
+
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:active {
+    -webkit-text-fill-color: #ffdd99 !important;
+    -webkit-box-shadow: 0 0 0px 1000px #3d0000 inset !important;
+    caret-color: #ffdd99 !important;
+    color: #ffdd99 !important;
+}
+
+input:-moz-autofill,
+input:-moz-autofill:hover,
+input:-moz-autofill:focus {
+    text-emphasis-color: #ffdd99 !important;
+    box-shadow: 0 0 0px 1000px #3d0000 inset !important;
+    caret-color: #ffdd99 !important;
+    color: #ffdd99 !important;
+}
+
+input:autofill,
+input:autofill:hover,
+input:autofill:focus {
+    text-emphasis-color: #ffdd99 !important;
+    box-shadow: 0 0 0px 1000px #3d0000 inset !important;
+    caret-color: #ffdd99 !important;
+    color: #ffdd99 !important;
+}
+/* Candle Container */
+#candles-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 1000;
+}
+
+/* Candle Elements */
+.candle {
+    position: absolute;
+    width: 22px;
+    height: 55px;
+    animation: float 4s ease-in-out infinite;
+    cursor: pointer;
+    pointer-events: auto;
+}
+
+.wax {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(to right, #f9f2e7, #f5e8d0, #f9f2e7);
+    border-radius: 3px;
+    box-shadow: inset 0 0 8px rgba(210,180,140,0.5);
+}
+
+.wick {
+    position: absolute;
+    width: 2px;
+    height: 12px;
+    background: #222;
+    top: -12px;
+    left: 10px;
+}
+
+.flame {
+    position: absolute;
+    width: 14px;
+    height: 28px;
+    background: linear-gradient(to top, #ff6000, #ffcc00);
+    border-radius: 50% 50% 20% 20%;
+    top: -28px;
+    left: 4px;
+    box-shadow: 0 0 18px #ff8800;
+    opacity: 0;
+    filter: blur(1px);
+    animation: flicker 1.5s ease-in-out infinite alternate;
+}
+
+.glow {
+    position: absolute;
+    width: 40px;
+    height: 40px;
+    background: radial-gradient(circle, rgba(255,180,60,0.4), transparent 70%);
+    border-radius: 50%;
+    top: -20px;
+    left: -9px;
+    opacity: 0;
+}
+
+/* Effects */
+.sparkle {
+    position: absolute;
+    width: 4px;
+    height: 4px;
+    background: white;
+    border-radius: 50%;
+    filter: blur(0.5px);
+    box-shadow: 0 0 5px white;
+    transform: translateX(-50%);
+}
+
+/* Base smoke style */
+/* Base Smoke Style */
+.zodiac-smoke {
+    position: absolute;
+    top: -20px;
+    left: 50%;
+    width: 20px;
+    height: 40px;
+    border-radius: 50%;
+    opacity: 0.7;
+    filter: blur(8px);
+    transform: translateX(-50%);
+    animation: smoke-float 9s ease-out forwards;
+    background: linear-gradient(to top, #e6c88c, transparent);
+    mix-blend-mode: screen;
+    box-shadow: 0 0 15px currentColor;
+}
+
+/* Zodiac-Specific Colors */
+.aries-smoke    { background: linear-gradient(to top, #ff5e00, transparent); }
+.taurus-smoke   { background: linear-gradient(to top, #00cc77, transparent); }
+.gemini-smoke   { background: linear-gradient(to top, #dddddd, transparent); }
+.cancer-smoke   { background: linear-gradient(to top, #ff88cc, transparent); }
+.leo-smoke      { background: linear-gradient(to top, #ffcc00, transparent); }
+.virgo-smoke    { background: linear-gradient(to top, #bbffbb, transparent); }
+.libra-smoke    { background: linear-gradient(to top, #ff99ff, transparent); }
+.scorpio-smoke  { background: linear-gradient(to top, #cc33ff, transparent); }
+.sagittarius-smoke { background: linear-gradient(to top, #ff7777, transparent); }
+.capricorn-smoke { background: linear-gradient(to top, #999999, transparent); }
+.aquarius-smoke { background: linear-gradient(to top, #66ffff, transparent); }
+.pisces-smoke   { background: linear-gradient(to top, #6666ff, transparent); }
+
+@keyframes smoke-float {
+    to { 
+        top: -100px; 
+        opacity: 0;
+        transform: translateX(-50%) scale(1.5);
+    }
+}
+
+
+/* Active States */
+.candle.lit .flame,
+.candle.lit .glow {
+    opacity: 1;
+}
+
+/* Animations */
+@keyframes float {
+    0%, 100% { transform: translateY(0) rotate(0deg); }
+    50% { transform: translateY(-15px) rotate(2deg); }
+}
+
+@keyframes flicker {
+    0%, 100% { transform: scaleY(1); }
+    50% { transform: scaleY(1.2); }
+}
+
+/* Theme Levels */
+.pitch-black { background: radial-gradient(circle, #230000, #000000); }
+.darkest { background: radial-gradient(circle, #3f0000, #0a0000); }
+.darker { background: radial-gradient(circle, #6c0101, #440000); }
+.dark { background: radial-gradient(circle, #7c0101, #3c0000); }
+.medium { background: radial-gradient(circle, #850202, #490000); }
+.light { background: radial-gradient(circle, #8d0707, #680202); }
+.blood-red { background: radial-gradient(circle, #8e0202, #760101); }
+/* ==================== */
+/* GOTHIC SEARCH BAR */
+/* ==================== */
+.gothic-search-container {
+    position: relative;
+    margin-right: 20px;
+}
+
+.gothic-search-form {
+    display: flex;
+    align-items: center;
+}
+
+.gothic-search-input {
+    width: 180px;
+    padding: 8px 15px 8px 35px;
+    background: rgba(40, 0, 0, 0.7);
+    border: 1px solid #d4a85a;
+    border-radius: 30px;
+    color: #ffdd99 !important;
+    font-family: 'Petit Formal Script', cursive;
+    font-size: 15px;
+    outline: none;
+    transition: all 0.4s ease;
+    box-shadow: 
+        inset 0 1px 3px rgba(0, 0, 0, 0.5),
+        0 0 10px rgba(212, 168, 90, 0.1);
+    text-shadow: 0 0 5px rgba(230, 200, 140, 0.3);
+}
+
+.gothic-search-input::placeholder {
+    color: #d4a85a !important;
+    opacity: 0.7;
+    font-style: italic;
+}
+
+.gothic-search-input:focus {
+    width: 220px;
+    background: rgba(60, 0, 0, 0.9);
+    border-color: #e6c88c;
+    box-shadow: 
+        inset 0 1px 3px rgba(0, 0, 0, 0.7),
+        0 0 15px rgba(230, 200, 140, 0.3);
+}
+
+.gothic-search-btn {
+    position: absolute;
+    left: 12px;
+    background: transparent;
+    border: none;
+    color: #d4a85a;
+    cursor: pointer;
+    padding: 0;
+    font-size: 16px;
+    transition: all 0.3s ease;
+}
+
+.gothic-search-btn:hover {
+    color: #ffdd99;
+    transform: scale(1.1);
+}
+
+/* ==================== */
+/* ANIMATIONS */
+/* ==================== */
+@keyframes searchPulse {
+    0% { box-shadow: 0 0 5px rgba(230, 200, 140, 0); }
+    50% { box-shadow: 0 0 15px rgba(230, 200, 140, 0.3); }
+    100% { box-shadow: 0 0 5px rgba(230, 200, 140, 0); }
+}
+
+.gothic-search-input:focus {
+    animation: searchPulse 3s infinite;
+}
+.inkblot-reveal {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    z-index: 800;
+}
+
+.inkblot {
+    width: 100px;
+    height: 100px;
+    background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><path fill="%233a0000" d="M30,50Q20,30,50,20Q80,30,70,50Q60,80,50,70Q40,80,30,50Z"/></svg>') no-repeat center;
+    cursor: pointer;
+    filter: drop-shadow(0 0 5px rgba(212, 168, 90, 0.5));
+    transition: all 0.5s ease;
+}
+
+.inkblot:hover {
+    transform: scale(1.2);
+    background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><path fill="%235a0000" d="M30,50Q20,30,50,20Q80,30,70,50Q60,80,50,70Q40,80,30,50Z"/></svg>') no-repeat center;
+}
+
+.hidden-message {
+    opacity: 0;
+    position: absolute;
+    bottom: 110%;
+    right: 0;
+    background: rgba(40, 0, 0, 0.9);
+    color: #e6c88c;
+    padding: 10px 15px;
+    border-radius: 5px;
+    border-left: 3px solid #d4a85a;
+    font-family: 'Petit Formal Script', cursive;
+    transition: opacity 0.3s ease;
+    width: 200px;
+    text-align: center;
+    pointer-events: none;
+}
+
+.inkblot:hover + .hidden-message {
+    opacity: 1;
+}
+
+.story-content {
+    font-family: Georgia, serif;
+    font-size: 1.9rem;
+    line-height: 1.8;
+    color: #d4a85a;
+  }
+
+
+  .scroll-reveal {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+    will-change: opacity, transform;
+  }
+  
+  .scroll-reveal.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  
+/* Spider Webs */
+.web {
+    position: fixed;
+    width: 150px;
+    opacity: 0.3;
+    z-index: 2;
+    pointer-events: none;
+  }
+  .web-top-left { top: 0; left: 0; }
+  .web-bottom-right { bottom: 0; right: 0; }
+  
+  /* Gothic Quote Banner */
+  .gothic-banner {
+    font-family: 'UnifrakturCook', serif;
+    text-align: center;
+    font-size: 1.2rem;
+    color: #aaaaaa;
+    margin: 20px 0;
+    opacity: 0.7;
+  }
+  
+  /* Fog Effect */
+  .fog {
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    background: url('/static/images/fog.png') repeat;
+    opacity: 0.04;
+    z-index: 1;
+    animation: drift 120s linear infinite;
+    pointer-events: none;
+  }
+  @keyframes drift {
+    0% { background-position: 0 0; }
+    100% { background-position: 2000px 0; }
+  }
+  
+  /* Flicker Text */
+  .flicker-text {
+    animation: flicker 2s infinite;
+    color: #fff;
+    text-shadow: 0 0 5px #ffdfaa, 0 0 10px #ffcc77;
+  }
+  @keyframes flicker {
+    0%, 100% { opacity: 1; text-shadow: 0 0 5px #ffdfaa, 0 0 10px #ffcc77; }
+    50% { opacity: 0.8; text-shadow: 0 0 3px #ffaa55, 0 0 6px #ffbb66; }
+  }
+  
+  /* Gothic Link Ink Bleed */
+  a {
+    position: relative;
+    color: #bd7203;
+    text-decoration: none;
+  }
+  a::after {
+    content: '';
+    position: absolute;
+    left: 0; bottom: 0;
+    width: 100%;
+    height: 2px;
+    background: #be7c00;
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.4s ease;
+  }
+  a:hover::after {
+    transform: scaleX(1);
+  }
+  
+  /* Scrollbar Styling */
+  ::-webkit-scrollbar {
+    width: 12px;
+    background: #1a0000;
+  }
+  ::-webkit-scrollbar-thumb {
+    background: linear-gradient(#5a0000, #3a0000);
+    border: 1px solid #d4af3720;
+  }
+  
+  /* Hide flame and glow by default */
+.candle .flame,
+.candle .glow {
+    display: none;
+}
+
+/* Show only when lit */
+.candle.lit .flame,
+.candle.lit .glow {
+    display: block;
+}
+
+.candle {
+    transition: filter 0.2s ease;
+}
+
+#zodiac-select {
+    background-color: #111;
+    color: rgb(133, 88, 0);
+    border: 1px solid rgba(255, 208, 106, 0.598);
+    padding: 8px;
+    font-family: 'Cinzel', serif;
+    font-size:  1.1em;
+    margin: 10px;
+}
+
+::selection {
+    background: #481717;
+    color: transparent;
+    text-shadow: 
+      0 0 1px #ffdd99,
+      1px 1px 2px #5a0000;
+  }
+
+  
+  img {
+    filter: sepia(0.3) hue-rotate(-20deg) saturate(1.5) contrast(1.1);
+    border: 1px solid #d4af37; /* antique gold border */
+    box-shadow: 0 0 10px #3a0e0e; /* blood red shadow */
+  }
+  
+  #ambient-toggle {
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: #4f0000; 
+    font-size: 1.5rem;
+    transition: color 0.3s ease, transform 0.2s ease;
+    margin-left: 10px;
+  }
+  
+  #ambient-toggle:hover {
+    color: #310000; /* Dark blood red */
+    transform: scale(1.1);
+  }
+  
+  #ambient-toggle:active {
+    transform: scale(0.95);
+  }
+  #gothic-clock {
+    font-family: 'Cinzel Decorative', serif;
+    color: #d4a85a;
+    font-weight: 700;
+    letter-spacing: 2px;
+    font-size: 1.1rem;
+    user-select: none;
+    padding-left: 15px;
+    /* Optional subtle glowing effect */
+    text-shadow:
+      0 0 5px #b9904a,
+      0 0 10px #d4a85a;
+  }
+  
+  .ashwood-alert
+  {
+    background-color: #1a1a1a; /* Deep gothic black */
+    color: #d4a85a;            /* Rustic gold */
+    border: 1px solid #3a2f2f; /* Subtle brownish border */
+    font-family: 'Cinzel Decorative', serif;
+    padding: 12px 20px;
+    margin: 10px 0;
+    border-radius: 10px;
+    text-align: center;
+    box-shadow: 0 0 8px #000;
+    letter-spacing: 0.5px;
+  }
+
+  
+  
+  
+  
+  

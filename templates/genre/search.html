@@ -1,0 +1,30 @@
+{% extends "genre/base.html" %}
+{% load static %}
+
+{% block content %}
+<div class="container" style="margin-top: 80px;"> <!-- Increased top margin -->
+    <h1 class="text-center mb-4">Search Results</h1>
+    
+    {% if results %}
+    <div class="book-container">
+        {% for piece in results %}
+        <div class="book-card">
+            {% if piece.piececover %}
+            <img src="{{ piece.piececover }}" alt="{{ piece.title }}" class="book-cover">
+            {% endif %}
+            <div class="book-info">
+                <h2 class="book-title">{{ piece.title }}</h2>
+                <p class="book-author">{{ piece.artist }}</p>
+                <p class="book-details">{{ piece.typ }} ({{ piece.year }})</p>
+                <p class="book-meta">From collection: <a href="{% url 'details' piece.collection.id %}">{{ piece.collection }}</a></p>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+    {% else %}
+    <div class="no-results">
+        <p>No pieces found matching your search.</p>
+    </div>
+    {% endif %}
+</div>
+{% endblock %}

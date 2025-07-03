@@ -1,0 +1,65 @@
+{# detailtemplate.html #}
+{% extends 'genre/base.html' %}
+{% block content %}
+<div class="container">
+    <h1 class="text-center mb-4 typewriter">{{ object.collection_name }}</h1>
+    <p class="text-center lead reveal">{{ object.description }}</p>
+
+    <div class="row">
+        {% for piece in Pitem %}
+        <div class="col-md-4 col-sm-6">
+            <a href="{% url 'piece_detail' piece.id %}" style="text-decoration: none; color: inherit;">
+                <div class="book-card reveal">
+                    <img src="{{ piece.piececover }}" alt="{{ piece.title }}" class="book-cover">
+                    <div class="book-info">
+                        <h3 class="book-title">{{ piece.title }}</h3>
+                        <p class="book-author">{{ piece.artist }}</p>
+                        <div class="book-details">
+                            <p>Type: {{ piece.typ }}</p>
+                            <p>Year: {{ piece.year }}</p>
+                        </div>
+                    </div>
+                </div>
+            </a>
+        </div>
+        {% empty %}
+        <div class="col-12 text-center">
+            <h3>No pieces found in this collection.</h3>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+
+<style>
+
+
+/* Scroll reveal */
+.reveal {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+}
+
+.reveal.active {
+  opacity: 1;
+  transform: translateY(0);
+}
+</style>
+
+<script>
+document.addEventListener("DOMContentLoaded", function() {
+  const reveals = document.querySelectorAll(".reveal");
+  function revealOnScroll() {
+    const windowHeight = window.innerHeight;
+    for (let el of reveals) {
+      const elementTop = el.getBoundingClientRect().top;
+      if (elementTop < windowHeight - 100) {
+        el.classList.add("active");
+      }
+    }
+  }
+  window.addEventListener("scroll", revealOnScroll);
+  revealOnScroll(); // trigger on load too
+});
+</script>
+{% endblock %}
